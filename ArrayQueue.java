@@ -23,7 +23,7 @@ public class ArrayQueue<E> {
 
     //Checks if the queue is empty
     public boolean isEmpty(){
-        if(queue.length < 0){
+        if(queue.length == 0){
             return true;
         }
         else{
@@ -47,7 +47,9 @@ public class ArrayQueue<E> {
     front = (front + 1) % queue.length is used to change the index of the front value (whuich represents the index of the last element in the queue)
     */
     public E dequeue(){
-        checkValid(0);
+        if(isEmpty()){
+            throw new IndexOutOfBoundsException("List is empty!");
+        }
         E temp = queue[front];
         queue[front] = null;
         front = (front + 1) % queue.length;
@@ -62,9 +64,6 @@ public class ArrayQueue<E> {
         }
         else if(index < 0){
             throw new IndexOutOfBoundsException("Not a valid input!");
-        }
-        else if(isEmpty()){
-            throw new IndexOutOfBoundsException("Queue is empty!");
         }
     }
 }
